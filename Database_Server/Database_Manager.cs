@@ -7,6 +7,15 @@ using MySql.Data.MySqlClient;
 
 class Database_Manager
 {
+	string nick;
+	string mail;
+	string password;
+	
+	string loginNick;
+	string loginPass;
+
+	int patch;
+
 	static void Main(string[] args)
 	{
 		//Parametros de conexion
@@ -23,9 +32,10 @@ class Database_Manager
 		{
 			Console.WriteLine(ex.ToString());	
 		}
-
-		//SelectExample(mySqlConnection);
-		//InsertExample(mySqlConnection);
+		#region Ejemplos
+		/*
+		SelectExample(mySqlConnection);
+		InsertExample(mySqlConnection);
 		DeleteExample(mySqlConnection);
 		void SelectExample(MySqlConnection mySqlConnection)
 		{
@@ -73,7 +83,51 @@ class Database_Manager
 			}
 
 		}
-		
+		*/
+		#endregion
+
+		//Insert de Usuario
+		void UserInsert(MySqlConnection mySqlConnection)
+        {
+			MySqlCommand command = connection.CreateCommand();
+			command.CommandText = "INSERT INTO Users VALUES("nick","mail""password");";
+			try {
+				command.ExecuteNonQuery();
+			}catch (Exception ex) {
+				Console.WriteLine(ex.Message);
+			}
+        }
+
+		//Login
+		void UserComprovation(MySqlConnection mySqlConnection)
+        {
+			MySqlCommand command = connection.CreateCommand();
+			command.CommandText = "SELECT * FROM Users WHERE Users.password = "loginPass"AND Users.nick="loginNick";";
+			try {
+				reader = command.ExecuteReader();
+			while(reader.Read()){
+				Console.WriteLine(reader["Nick"].ToString();
+			}
+			}catch (Exception ex){
+				Console.WriteLine(ex.Message);
+			}
+        }
+
+		//Comprobación de parche
+		void PatchComprovation(MySqlConnection mySqlConnection)
+        {
+			MySqlCommand command = connection.CreateCommand();
+			command.CommandText = "SELECT * FROM Patchs WHERE Patchs.patch = "patch";";
+			try {
+				reader = command.ExecuteReader();
+			while(reader.Read()){
+				Console.WriteLine(reader["patch"].ToString();
+			}
+			}catch (Exception ex){
+				Console.WriteLine(ex.Message);
+			}
+        }
+
 		mySqlConnection.Close();
 
 	}
