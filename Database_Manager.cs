@@ -5,7 +5,7 @@ public class Database_Manager
     const string databaseName = "patojuegoenti";
     const int port = 3306;
     const string uID = "charlie00";
-    const string password = "Apolonio26";
+    const string password = "";
     string connectionString = $"Server=db4free.net;Port={3306};database={databaseName};uID={uID};password={password};SSL Mode=None;connect timeout = 3600;";
     MySqlConnection connection;
     public void DatabaseManager()
